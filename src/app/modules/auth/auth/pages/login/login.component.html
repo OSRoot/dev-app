@@ -1,0 +1,41 @@
+<div class="container">
+
+  <form class="myform" [formGroup]="login">
+    <mat-form-field class="form-field">
+      <mat-label>Email</mat-label>
+      <input (keyup.enter)="logMeIn()"
+              formControlName="email"
+              class="email-inp"
+              type="email"
+              matInput
+              placeholder="Ex. pat@example.com">
+      <mat-hint *ngIf="login.get('email')?.dirty">Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="login.get('email')?.errors?.['email']">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="login.get('email')?.errors?.['required']">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Password</mat-label>
+      <input (keyup.enter)="logMeIn()"
+              formControlName="password"
+              class="password-inp"
+              type="password"
+              matInput
+              placeholder="password">
+      <mat-hint *ngIf="login.get('password')?.dirty" >Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="login.get('password')?.errors?.['minlength']">
+        Please enter a strong password
+      </mat-error>
+      <mat-error *ngIf="login.get('password')?.errors?.['required']">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <button class="main-btn" mat-flat-button color="accent" (click)="logMeIn()">Login</button>
+
+  </form>
+</div>
